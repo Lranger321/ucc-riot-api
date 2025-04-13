@@ -4,8 +4,9 @@ import com.riot.api.RiotApi;
 import com.riot.api.model.RiotAccount;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class SummonerApi {
 
