@@ -17,8 +17,8 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
-      - name: Build and Test
-        run: mvn -B verify
+      - name: Build
+        run: mvn install
 
   checkstyle:
     needs: [build]
