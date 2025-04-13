@@ -4,7 +4,7 @@ meta:
   environment: jvm
   toolchain:
     name: maven
-    version: 21
+    version: 17
 build:
   #  копируем все файлы с расширением jar из папки target
   artifacts:
