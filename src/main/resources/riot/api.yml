@@ -1,0 +1,226 @@
+openapi: "3.0.0"
+info:
+  title: RiotApi
+  description: Riot api for develop
+  version: "1"
+paths:
+  /riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}:
+    get:
+      summary: Get info about account
+      operationId: getAccount
+      tags:
+        - Accounts
+      parameters:
+        - name: gameName
+          in: path
+          required: true
+          schema: { type: string }
+          description: Riot name
+
+        - name: tagLine
+          in: path
+          required: true
+          schema: { type: string }
+          description: Riot tagline (after hashtag)
+
+      responses:
+        '200':
+          description: Riot account
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/RiotAccount.yml#/components/schemas/RiotAccount'
+
+  /lol/match/v5/matches/by-puuid/{puuid}/ids:
+    get:
+      tags:
+        - Match
+      summary: Получить список ID матчей по PUUID игрока
+      description: Возвращает список идентификаторов матчей для указанного игрока
+      operationId: getMatchIdsByPUUID
+      parameters:
+        - name: puuid
+          in: path
+          required: true
+          description: PUUID игрока
+          schema:
+            type: string
+
+        - name: startTime
+          in: query
+          description: Начальное время поиска (Epoch milliseconds)
+          schema:
+            type: integer
+            format: int64
+            example: 1672531200000
+
+        - name: endTime
+          in: query
+          description: Конечное время поиска (Epoch milliseconds)
+          schema:
+            type: integer
+            format: int64
+            example: 1675123200000
+
+        - name: queue
+          in: query
+          description: ID игровой очереди
+          schema:
+            type: integer
+            example: 420
+
+        - name: type
+          in: query
+          description: Тип матча (например, "ranked", "normal", "tourney")
+          schema:
+            type: string
+            example: "ranked"
+
+        - name: start
+          in: query
+          description: Начальный индекс пагинации
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+
+        - name: count
+          in: query
+          description: Количество возвращаемых матчей (1-100)
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+
+      responses:
+        '200':
+          description: Список ID матчей
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: "KR_1234567890"
+
+        '400':
+          description: Неверные параметры запроса
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '401':
+          description: Не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '403':
+          description: Доступ запрещен
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '404':
+          description: Данные не найдены
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '429':
+          description: Превышен лимит запросов
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '503':
+          description: Сервис недоступен
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+  /lol/match/v5/matches/{matchId}:
+    get:
+      tags:
+        - Match
+      summary: Получить информацию о матче
+      description: Возвращает полную информацию о конкретном матче
+      operationId: getMatchById
+      parameters:
+        - name: matchId
+          in: path
+          required: true
+          description: ID матча
+          schema:
+            type: string
+            example: "KR_1234567890"
+
+      responses:
+        '200':
+          description: Данные матча
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Match.yml#/components/schemas/MatchDto'
+
+        '400':
+          description: Неверный запрос
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '401':
+          description: Не авторизован
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '403':
+          description: Доступ запрещен
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '404':
+          description: Матч не найден
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '429':
+          description: Превышен лимит запросов
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'
+
+        '503':
+          description: Сервис недоступен
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Errors.yml#/components/schemas/RiotError'

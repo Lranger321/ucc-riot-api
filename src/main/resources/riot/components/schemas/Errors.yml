@@ -1,0 +1,14 @@
+components:
+  schemas:
+    RiotError:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            message:
+              type: string
+              example: "Forbidden"
+            status_code:
+              type: integer
+              example: 403

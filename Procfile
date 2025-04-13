@@ -1,0 +1,1 @@
+web: java -jar target/siren-post-1.0-SNAPSHOT.jar

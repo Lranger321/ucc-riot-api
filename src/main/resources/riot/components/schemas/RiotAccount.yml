@@ -1,0 +1,18 @@
+components:
+  schemas:
+    RiotAccount:
+      type: object
+      required:
+        - puuid
+        - gameName
+        - tagLine
+      properties:
+        gameName:
+          description: This field may be excluded from the response if the account doesn't have a gameName
+          type: string
+        tagLine:
+          description: This field may be excluded from the response if the account doesn't have a tagLine
+          type: string
+        puuid:
+          description: Riot main id
+          type: string

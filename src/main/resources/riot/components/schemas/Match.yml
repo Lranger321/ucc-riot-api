@@ -1,0 +1,75 @@
+components:
+  schemas:
+    MatchDto:
+      type: object
+      properties:
+        info:
+          $ref: '#/components/schemas/InfoDto'
+
+    InfoDto:
+      type: object
+      properties:
+        gameCreation:
+          type: integer
+          format: int64
+          example: 1672531200000
+        gameDuration:
+          type: integer
+          example: 1324
+        gameId:
+          type: integer
+          format: int64
+          example: 1234567890
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParticipantDto'
+        gameMode:
+          $ref: '#/components/schemas/GameMode'
+
+    ParticipantDto:
+      type: object
+      properties:
+        summonerName:
+          type: string
+          example: "Hide on Bush"
+        championName:
+          type: string
+          example: "Ahri"
+        kills:
+          type: integer
+          example: 12
+        deaths:
+          type: integer
+          example: 3
+        assists:
+          type: integer
+          example: 8
+        teamId:
+          type: integer
+          example: 100
+        win:
+          type: boolean
+          example: true
+        teamPosition:
+          type: string
+          example: JUNGLE
+        riotIdGameName:
+          type: string
+        placement:
+          type: integer
+
+    GameMode:
+      type: string
+      enum:
+        - CLASSIC
+        - ARAM
+        - ONEFORALL
+        - ASCENSION
+        - URF
+        - DOOMBOTS
+        - NIGHTMARE_BOT
+        - SHOWDOWN
+        - BOT
+        - TUTORIAL
+        - CHERRY

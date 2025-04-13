@@ -1,0 +1,27 @@
+spring:
+  port: ${SERVER_PORT:8080}
+
+logging:
+  level:
+    org.springframework.boot.context.properties: INFO
+
+ucc:
+  members:
+    - name: "Lranger"
+      tag-line: "2576"
+    - name: "Inray"
+      tag-line: "777"
+    - name: "SadGolem"
+      tag-line: "027"
+    - name: "DOC"
+      tag-line: "RU2"
+    - name: "YExJPEG"
+      tag-line: "VLTRS"
+
+riot:
+  url: ${BASE_RIOT_PATH:https://europe.api.riotgames.com/}
+  api:
+    token: ${API_TOKEN}
+
+lol:
+  url: ${BASE_RIOT_PATH:https://europe.api.riotgames.com/}
