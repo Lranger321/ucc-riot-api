@@ -26,6 +26,7 @@ public abstract class StatParser<T extends PlayerStatForGame> {
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
                 .orElse("N/A"));
+        stat.setAverageDmg(getAverageDmg(participantDtoList));
         return stat;
     }
 
@@ -48,5 +49,12 @@ public abstract class StatParser<T extends PlayerStatForGame> {
                 ? BigDecimal.ZERO
                 : BigDecimal.valueOf((totalKills + totalAssists) / (double) totalDeaths)
                 .setScale(2, RoundingMode.HALF_UP));
+    }
+
+    private BigDecimal getAverageDmg(List<ParticipantDto> participantDtoList) {
+        return BigDecimal.valueOf(participantDtoList.stream()
+                .mapToInt(ParticipantDto::getTotalDamageDealtToChampions)
+                .average()
+                .orElse(0));
     }
 }
