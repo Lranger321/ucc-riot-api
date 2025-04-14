@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 @Data
 public class PlayerStatForGame {
@@ -14,4 +15,6 @@ public class PlayerStatForGame {
     private BigDecimal averageKda;
     @Schema(description = "Титул игрока", example = "Ahri")
     private String mostFrequentCharacter;
+    @Schema(description = "Словарь ключ персонаж, значение кол-во игр")
+    private Map<String, Long> characterCount;
 }

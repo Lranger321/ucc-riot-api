@@ -16,7 +16,16 @@ public abstract class StatParser<T extends PlayerStatForGame> {
         T stat = getStat(participantDtoList);
         stat.setCount(participantDtoList.size());
         stat.setAverageKda(getKda(participantDtoList));
-        stat.setMostFrequentCharacter(getCharacter(participantDtoList));
+
+        Map<String, Long> championFrequency = participantDtoList.stream()
+                .filter(p -> p.getChampionName() != null)
+                .collect(Collectors.groupingBy(ParticipantDto::getChampionName, Collectors.counting()));
+
+        stat.setCharacterCount(championFrequency);
+        stat.setMostFrequentCharacter(championFrequency.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse("N/A"));
         return stat;
     }
 
@@ -39,16 +48,5 @@ public abstract class StatParser<T extends PlayerStatForGame> {
                 ? BigDecimal.ZERO
                 : BigDecimal.valueOf((totalKills + totalAssists) / (double) totalDeaths)
                 .setScale(2, RoundingMode.HALF_UP));
-    }
-
-    private String getCharacter(List<ParticipantDto> participantDtoList) {
-        Map<String, Long> championFrequency = participantDtoList.stream()
-                .filter(p -> p.getChampionName() != null)
-                .collect(Collectors.groupingBy(ParticipantDto::getChampionName, Collectors.counting()));
-
-        return (championFrequency.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .map(Map.Entry::getKey)
-                .orElse("N/A"));
     }
 }

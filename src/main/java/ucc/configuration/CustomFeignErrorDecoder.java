@@ -16,7 +16,7 @@ public class CustomFeignErrorDecoder implements ErrorDecoder {
     @Override
     public Exception decode(String methodKey, Response response) {
         if (response.status() == HttpStatus.TOO_MANY_REQUESTS.value()) {
-            log.error("429 Unauthorized from {}", methodKey);
+            log.error("429 Too many request from {}", methodKey);
             return new TooManyRequestException();
         }
         // Логируем другие ошибки

@@ -29,6 +29,11 @@ public class ClassicGameStatParser extends StatParser<StatForNormal> {
                 .map(Map.Entry::getKey)
                 .orElse("N/A"));
 
+        stat.setPentaKillCount(matches.stream().mapToInt(ParticipantDto::getPentaKills)
+                .sum());
+        stat.setQuadroKillCount(matches.stream().mapToInt(ParticipantDto::getQuadraKills)
+                .sum());
+
         long winCount = matches.stream()
                 .filter(p -> p.getWin() != null && p.getWin())
                 .count();
