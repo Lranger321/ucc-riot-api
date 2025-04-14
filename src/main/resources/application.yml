@@ -17,6 +17,8 @@ ucc:
       tag-line: "RU2"
     - name: "YExJPEG"
       tag-line: "VLTRS"
+    - name: "nerzullx"
+      tag-line: "RU1"
 
 riot:
   url: ${BASE_RIOT_PATH:https://europe.api.riotgames.com/}
