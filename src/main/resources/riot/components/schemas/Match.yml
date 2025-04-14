@@ -58,6 +58,12 @@ components:
           type: string
         placement:
           type: integer
+        pentaKills:
+          type: integer
+        quadraKills:
+          type: integer
+        totalDamageDealtToChampions:
+          type: integer
 
     GameMode:
       type: string
