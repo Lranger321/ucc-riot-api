@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class MatchesVariable {
 
-    private static final int DEFAULT_COUNT = 20;
+    private static final int DEFAULT_COUNT = 15;
     private static final int DEFAULT_START = 0;
 
     /**

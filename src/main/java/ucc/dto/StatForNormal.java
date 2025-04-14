@@ -14,4 +14,6 @@ public class StatForNormal extends PlayerStatForGame {
     private String mostFrequentRole;
     @Schema(description = "Процент винрейта", example = "50")
     private BigDecimal winRate;
+    private long pentaKillCount;
+    private long quadroKillCount;
 }
