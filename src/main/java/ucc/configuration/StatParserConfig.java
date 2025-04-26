@@ -1,6 +1,6 @@
 package ucc.configuration;
 
-import com.riot.api.model.GameMode;
+import ucc.persistence.model.GameMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ucc.dto.PlayerStatForGame;

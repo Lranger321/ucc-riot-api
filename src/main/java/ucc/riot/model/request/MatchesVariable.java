@@ -7,8 +7,8 @@ import lombok.Getter;
 @Getter
 public class MatchesVariable {
 
-    private static final int DEFAULT_COUNT = 20;
     private static final int DEFAULT_START = 0;
+    private static final int DEFAULT_COUNT = 20;
 
     /**
      * Epoch timestamp

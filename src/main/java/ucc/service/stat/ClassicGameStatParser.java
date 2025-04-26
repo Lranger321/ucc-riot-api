@@ -1,9 +1,9 @@
 package ucc.service.stat;
 
-import com.riot.api.model.GameMode;
-import com.riot.api.model.ParticipantDto;
 import org.springframework.stereotype.Service;
 import ucc.dto.StatForNormal;
+import ucc.persistence.model.GameMode;
+import ucc.persistence.model.Participant;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -17,21 +17,21 @@ public class ClassicGameStatParser extends StatParser<StatForNormal> {
     private static final int PERCENT = 100;
 
     @Override
-    protected StatForNormal getStat(List<ParticipantDto> matches) {
-        var stat = new StatForNormal();
+    protected StatForNormal getStat(List<Participant> matches) {
+        var stat = StatForNormal.builder();
 
         Map<String, Long> roleFrequency = matches.stream()
                 .filter(p -> p.getTeamPosition() != null)
-                .collect(Collectors.groupingBy(ParticipantDto::getTeamPosition, Collectors.counting()));
+                .collect(Collectors.groupingBy(Participant::getTeamPosition, Collectors.counting()));
 
-        stat.setMostFrequentRole(roleFrequency.entrySet().stream()
+        stat.mostFrequentRole(roleFrequency.entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
                 .orElse("N/A"));
 
-        stat.setPentaKillCount(matches.stream().mapToInt(ParticipantDto::getPentaKills)
+        stat.pentaKillCount(matches.stream().mapToInt(Participant::getPentaKills)
                 .sum());
-        stat.setQuadroKillCount(matches.stream().mapToInt(ParticipantDto::getQuadraKills)
+        stat.quadroKillCount(matches.stream().mapToInt(Participant::getQuadraKills)
                 .sum());
 
         long winCount = matches.stream()
@@ -40,9 +40,9 @@ public class ClassicGameStatParser extends StatParser<StatForNormal> {
 
         BigDecimal winRate = BigDecimal.valueOf((double) winCount / matches.size() * PERCENT)
                 .setScale(2, RoundingMode.HALF_UP);
-        stat.setWinRate(winRate);
+        stat.winRate(winRate);
 
-        return stat;
+        return stat.build();
     }
 
     @Override

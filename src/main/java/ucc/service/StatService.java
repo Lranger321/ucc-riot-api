@@ -4,7 +4,7 @@ import ucc.dto.PlayerStat;
 
 import java.util.List;
 
-public interface MatchService {
+public interface StatService {
 
     List<PlayerStat> getPlayersStat();
 }

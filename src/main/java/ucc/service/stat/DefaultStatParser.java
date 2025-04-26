@@ -1,15 +1,15 @@
 package ucc.service.stat;
 
-import com.riot.api.model.GameMode;
-import com.riot.api.model.ParticipantDto;
 import ucc.dto.PlayerStatForGame;
+import ucc.persistence.model.GameMode;
+import ucc.persistence.model.Participant;
 
 import java.util.List;
 
 public class DefaultStatParser extends StatParser<PlayerStatForGame> {
 
     @Override
-    protected PlayerStatForGame getStat(List<ParticipantDto> participantDtoList) {
+    protected PlayerStatForGame getStat(List<Participant> participantDtoList) {
         return new PlayerStatForGame();
     }
 

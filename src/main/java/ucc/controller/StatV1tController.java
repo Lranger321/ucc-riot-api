@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ucc.dto.PlayerStat;
-import ucc.service.MatchService;
+import ucc.service.StatService;
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ import java.util.List;
         name = "UCC Statistics API",
         description = "API для получения статистики игроков UCC"
 )
-public class ClientController {
+public class StatV1tController {
 
-    private final MatchService matchService;
+    private final StatService statService;
 
     @Operation(
             summary = "Получить статистику всех игроков",
@@ -33,8 +33,9 @@ public class ClientController {
             responseCode = "500",
             description = "Внутренняя ошибка сервера"
     )
+    @Deprecated
     @GetMapping("/api/ucc/getStat")
     public List<PlayerStat> getPlayerStat() {
-        return matchService.getPlayersStat();
+        return statService.getPlayersStat();
     }
 }

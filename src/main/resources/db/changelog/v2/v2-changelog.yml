@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: /ddl/players.sql
+      relativeToChangelogFile: true
+  - include:
+      file: /ddl/matches.sql
+      relativeToChangelogFile: true
