@@ -35,7 +35,15 @@ public class StatServiceImpl implements StatService {
 
     @Override
     public List<PlayerStat> getPlayersStat() {
-        List<PlayerDto> players = accountService.getAllRegistredPlayers();
+        return getPlayersStatByPlayerDto(accountService.getAllRegistredPlayers());
+    }
+
+    @Override
+    public List<PlayerStat> getPlayersStatForPlayers(List<String> players) {
+        return getPlayersStatByPlayerDto(accountService.getAllRegistredPlayers(players));
+    }
+
+    private List<PlayerStat> getPlayersStatByPlayerDto(List<PlayerDto> players) {
         List<CompletableFuture<PlayerStat>> futures = players.stream()
                 .map(this::getFutureForPlayerStat)
                 .toList();

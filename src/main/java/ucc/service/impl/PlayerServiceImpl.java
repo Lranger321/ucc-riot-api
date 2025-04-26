@@ -28,6 +28,11 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    public List<PlayerDto> getAllRegistredPlayers(List<String> players) {
+        return playerMapper.mapToPlayerDto(playerRepository.getRegisteredPlayersByName(players));
+    }
+
+    @Override
     public PlayerDto addPlayer(PlayerRequestDto playerDto) {
         try {
             var riotAccount = playerMapper.mapToPlayer(summonerApi.getRiotAccount(playerDto.getGameName(), playerDto.getTagLine()));

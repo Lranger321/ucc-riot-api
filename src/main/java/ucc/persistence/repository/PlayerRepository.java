@@ -17,7 +17,22 @@ public interface PlayerRepository {
     @ResultMap("playerResultMap")
     List<Player> getRegisteredPlayers();
 
-    //todo сделать лист
+    @Select("""
+            <script>
+            SELECT puuid,
+                   name,
+                   tag_line
+            FROM players
+            WHERE name IN (
+             <foreach collection="players" item="player" separator=",">
+             #{player}
+             </foreach>
+                        )
+            </script>
+            """)
+    @ResultMap("playerResultMap")
+    List<Player> getRegisteredPlayersByName(@Param("players") List<String> players);
+
     @Insert("""
             INSERT INTO players(puuid, name, tag_line)
             VALUES (#{player.puuid}, #{player.gameName}, #{player.tagLine})

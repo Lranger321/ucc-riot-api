@@ -7,4 +7,6 @@ import java.util.List;
 public interface StatService {
 
     List<PlayerStat> getPlayersStat();
+
+    List<PlayerStat> getPlayersStatForPlayers(List<String> players);
 }

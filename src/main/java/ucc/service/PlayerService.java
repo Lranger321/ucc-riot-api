@@ -9,6 +9,8 @@ public interface PlayerService {
 
     List<PlayerDto> getAllRegistredPlayers();
 
+    List<PlayerDto> getAllRegistredPlayers(List<String> players);
+
     PlayerDto addPlayer(PlayerRequestDto playerDto);
 
     void deletePlayer(String puuid);
