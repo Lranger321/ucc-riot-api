@@ -1,0 +1,30 @@
+components:
+  schemas:
+    PlayerDto:
+      type: object
+      required:
+        - puuid
+        - gameName
+        - tagLine
+      properties:
+        gameName:
+          description: Имя игрока
+          type: string
+        tagLine:
+          description: tagLine Игрока (после хештега)
+          type: string
+        puuid:
+          description: Riot main id
+          type: string
+    PlayerRequestDto:
+      type: object
+      required:
+        - gameName
+        - tagLine
+      properties:
+        gameName:
+          description: Имя игрока
+          type: string
+        tagLine:
+          description: tagLine Игрока (после хештега)
+          type: string

@@ -1,0 +1,67 @@
+openapi: "3.0.0"
+info:
+  title: Players
+  description: Players api for develop
+  version: "2"
+paths:
+  /players/v2/:
+    get:
+      summary: Получить все игроков которые зарегестрированны
+      operationId: getAllPlayers
+      tags:
+        - Players
+
+      responses:
+        '200':
+          description: Players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './components/schemas/Player.yml#/components/schemas/PlayerDto'
+
+    post:
+      summary: Зарегистрировать игрока
+      operationId: registerPlayer
+      tags:
+        - Players
+
+      requestBody:
+        description: Данные игрока
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components/schemas/Player.yml#/components/schemas/PlayerRequestDto'
+
+      responses:
+        '200':
+          description: Player
+          content:
+            application/json:
+              schema:
+                $ref: './components/schemas/Player.yml#/components/schemas/PlayerDto'
+
+    delete:
+      summary: Удалить игрока
+      operationId: deletePlayer
+      tags:
+        - Players
+
+      parameters:
+        - name: puuid
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Riot puuid
+
+      responses:
+        '200':
+          description: Игрок удален
+          content:
+            application/json:
+              schema:
+                type: object
+                nullable: true

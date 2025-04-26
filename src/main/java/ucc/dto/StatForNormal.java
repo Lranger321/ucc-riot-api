@@ -1,13 +1,15 @@
 package ucc.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
+@Builder
 public class StatForNormal extends PlayerStatForGame {
 
     @Schema(description = "Самая популярная роль", example = "TOP")

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ucc.persistence.repository.ParticipantRepository">
+
+    <resultMap id="participantResultMap" type="ucc.persistence.model.Participant">
+        <constructor>
+            <arg column="riot_id_game_name" javaType="java.lang.String"/>
+            <arg column="champion_name" javaType="java.lang.String"/>
+            <arg column="kills" javaType="java.lang.Integer"/>
+            <arg column="deaths" javaType="java.lang.Integer"/>
+            <arg column="assists" javaType="java.lang.Integer"/>
+            <arg column="team_id" javaType="java.lang.Integer"/>
+            <arg column="win" javaType="java.lang.Boolean"/>
+            <arg column="team_position" javaType="java.lang.String"/>
+            <arg column="placement" javaType="java.lang.Integer"/>
+            <arg column="penta_kills" javaType="java.lang.Integer"/>
+            <arg column="quadra_kills" javaType="java.lang.Integer"/>
+            <arg column="total_damage_dealt_to_champions" javaType="java.lang.Integer"/>
+        </constructor>
+    </resultMap>
+
+</mapper>

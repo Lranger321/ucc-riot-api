@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ucc.persistence.repository.MatchRepository">
+
+    <!-- ResultMap для Match -->
+    <resultMap id="matchResultMap" type="ucc.persistence.model.Match">
+        <constructor>
+            <idArg column="id" javaType="String"/>
+            <arg column="game_mode" javaType="ucc.persistence.model.GameMode"/>
+            <arg resultMap="ucc.persistence.repository.ParticipantRepository.participantResultMap"
+                 columnPrefix="p_"
+                 javaType="ucc.persistence.model.Participant"/>
+        </constructor>
+    </resultMap>
+
+</mapper>

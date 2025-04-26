@@ -1,24 +1,24 @@
 spring:
   port: ${SERVER_PORT:8080}
+  datasource:
+    url: jdbc:h2:file:/data/database
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yml
+    enabled: true
 
 logging:
   level:
     org.springframework.boot.context.properties: INFO
 
-ucc:
-  members:
-    - name: "Lranger"
-      tag-line: "2576"
-    - name: "Inray"
-      tag-line: "777"
-    - name: "SadGolem"
-      tag-line: "027"
-    - name: "DOC"
-      tag-line: "RU2"
-    - name: "YExJPEG"
-      tag-line: "VLTRS"
-    - name: "nerzullx"
-      tag-line: "RU1"
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
 
 riot:
   url: ${BASE_RIOT_PATH:https://europe.api.riotgames.com/}

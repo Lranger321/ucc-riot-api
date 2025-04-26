@@ -30,9 +30,6 @@ components:
     ParticipantDto:
       type: object
       properties:
-        summonerName:
-          type: string
-          example: "Hide on Bush"
         championName:
           type: string
           example: "Ahri"
