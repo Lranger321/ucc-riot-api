@@ -66,8 +66,8 @@ public class LolMatchServiceImpl implements LolMatchService {
         } finally {
             if (lock.isHeldByCurrentThread()) {
                 lock.unlock();
+                LOCKS.remove(cleanId, lock);
             }
-            LOCKS.remove(cleanId, lock);
         }
     }
 

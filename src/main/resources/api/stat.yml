@@ -1,0 +1,22 @@
+openapi: "3.0.0"
+info:
+  title: Players
+  description: Players api for develop
+  version: "2"
+paths:
+  /stats/v2/byPlayers:
+    get:
+      summary: Получить все игроков которые зарегестрированны
+      operationId: getAllPlayers
+      tags:
+        - Players
+
+      responses:
+        '200':
+          description: Players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './components/schemas/Player.yml#/components/schemas/PlayerDto'
